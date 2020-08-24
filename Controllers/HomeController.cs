@@ -102,7 +102,7 @@ namespace General_Quarters.Controllers
         
         public IActionResult Privacy()
         {
-            return View();
+            return View("Dashboard");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
