@@ -48,6 +48,9 @@ namespace General_Quarters.Models
         public DateTime CreatedAt {get;set;} = DateTime.Now;
         public DateTime UpdatedAt {get;set;} = DateTime.Now;
 
+        // Navigation Prarameters
+        public Profile Profile {get;set;}
+
         //np
 
         // ctor
