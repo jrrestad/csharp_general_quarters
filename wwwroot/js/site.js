@@ -71,3 +71,5 @@ function displayBoard() {
     }
     document.getElementById('board').innerHTML = output;
 }
+
+displayBoard();
