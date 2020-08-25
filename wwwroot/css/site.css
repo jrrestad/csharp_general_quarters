@@ -1,6 +1,9 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
-
+*{
+  padding: 0px;
+  margin: 0px;
+}
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -91,4 +94,14 @@ body {
 .sent{
   display: inline-flex;
   float: right;
+}
+#FriendsFrame{
+  max-width: 200px;
+}
+#ChatFrame{
+  max-width: 350px;
+}
+#MapsFrame{
+  max-width: 600px;
+  padding-bottom: 5px;
 }

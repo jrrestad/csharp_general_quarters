@@ -1,6 +1,18 @@
 ﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
+$( document ).ready(function() {
+    console.log( "ready!" );
+    $(".enemyMap").mousemove(function(event){
+        var X = event.pageX - $(this).offset().left;
+        var Y = event.pageY - $(this).offset().top;
+        console.log(X + ", "+ Y);
+    });
+});
+
+
+
+
 // Write your JavaScript code.
 let board = [
     [0,1,2,3,4,5,6,7,8,9,10],
