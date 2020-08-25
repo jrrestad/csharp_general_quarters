@@ -81,7 +81,6 @@ body {
   border: 1px solid black;
 }
 
-<<<<<<< HEAD
 .icon-flipped {
   transform: scaleX(-1);
   -moz-transform: scaleX(-1);
@@ -96,7 +95,6 @@ body {
 .form-transparent{
   opacity: 96%;
 }
-=======
 #chat{
   min-height: 400px;
   max-width: 380px;
@@ -121,4 +119,13 @@ body {
   max-width: 600px;
   padding-bottom: 5px;
 }
->>>>>>> 5088c3b5e9c42a4ddb24a743399248650f15b7a7
+.no-outline:focus {
+  outline: none;
+}
+.no-no-outline {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: #eee;
+}
