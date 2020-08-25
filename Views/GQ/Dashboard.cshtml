@@ -16,55 +16,46 @@
         <div class="enemyMap row ml-auto ">
             <img src="~/Content/Images/RadarScope.png" alt="RadarScope.png">
         </div>
-        <div class="friendlyMap row">
+        <div class="friendlyMap row ml-auto mt-3">
             <img src="~/Content/Images/FriendlyGrid.png" alt="">
         </div>
 
     </div>
     <div id="ChatFrame" class="col">
         @* Placeholder stuff for signal R, can rebuild as needed. Will let you decide how/where to place it Jim*@
-        <div class="col">
-            <p class="recieved d-block "> <span class="text-danger">USERNAME -</span> Message text</p>
-            <p class="sent ">Message Text<span class="text-primary">- USERNAME</span></p>
-        </div>
+
         <div class="container mt-5">
+            <div class="row justify-content-center">
+                <h3>Chat</h3>
+                &nbsp;
+                </div>
+            <div class="row mb-3">
+                <div class="col-12 d-none">
+                    <input disabled id="userInput" class="no-outline no-no-outline bg-white" value="@username"/>
+                </div>
+            </div>
+            <div class="row overflow-auto border p-2" style="height: 200px;">
+                <div class="col-12 ml-1">
+                    <h6 id="messagesList"></h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <textarea placeholder="Enter a message..." id="messageInput" cols="50" rows="3" class="form-control"></textarea>
+                </div>
+            </div>
             <div class="row">&nbsp;</div>
-        <div class="row mb-3">
-            <div class="col-12">
-                <input disabled id="userInput" class="no-outline no-no-outline bg-white" value="@username"/>
+            <div class="row">
+                <div class="col-12">
+                    <input type="button" id="sendButton" value="Send Message" class="form-control btn-primary"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <hr/>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <textarea placeholder="Enter a message..." id="messageInput" cols="50" rows="3" class="form-control"></textarea>
-            </div>
-        </div>
-        <div class="row">&nbsp;</div>
-        <div class="row">
-            <div class="col-12">
-                <input type="button" id="sendButton" value="Send Message" class="form-control btn-primary"/>
-            </div>
-        </div>
-    <div class="row">
-        <div class="col-12">
-            <hr/>
-        </div>
-    </div>
-    <div class="row overflow-auto border" style="height: 200px;">
-        <div class="col-12 ml-1">
-            <h6 id="messagesList"></h6>
-        </div>
-    </div>
-        @* <div id="chat" class="row w-auto border border-dark align-content-end ">
-            <div class="col">
-                <p class="recieved d-block "> <span class="text-danger">USERNAME -</span> Message text</p>
-                <p class="sent ">Message Text<span class="text-primary">- USERNAME</span></p>
-            </div>
-        </div>
-        <div class="row">
-            <input class="w-100 m-2" type="text" placeholder="Talk some trash!!">
-            <button class="w-100 m-2">Send</button>
-        </div> *@
     </div>
 </div>
 @* Scripts for Signal R *@
