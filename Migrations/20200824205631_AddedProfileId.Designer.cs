@@ -3,14 +3,16 @@ using System;
 using General_Quarters.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace General_Quarters.Migrations
 {
     [DbContext(typeof(GQContext))]
-    partial class GQContextModelSnapshot : ModelSnapshot
+    [Migration("20200824205631_AddedProfileId")]
+    partial class AddedProfileId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +47,7 @@ namespace General_Quarters.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Profiles");
+                    b.ToTable("Profile");
                 });
 
             modelBuilder.Entity("General_Quarters.Models.User", b =>

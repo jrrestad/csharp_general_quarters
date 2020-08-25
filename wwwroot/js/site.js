@@ -1,6 +1,81 @@
 ﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
+$( document ).ready(function() {
+    console.log( "ready!" );
+    $(".enemyMap").mousemove(function(event){
+        var X = event.pageX - $(this).offset().left;
+        var Y = event.pageY - $(this).offset().top;
+        console.log(X + ", "+ Y);
+        //This converts the X pixels into position
+        if (X > 49 && X < 100){
+            var GridX = 1;
+        }
+        if (X > 100 && X < 150){
+            var GridX = 2;
+        }
+        if (X > 149 && X < 200){
+            var GridX = 3;
+        }
+        if (X > 199 && X < 250){
+            var GridX = 4;
+        }
+        if (X > 249 && X < 300){
+            var GridX = 5;
+        }
+        if (X > 299 && X < 350){
+            var GridX = 6;
+        }
+        if (X > 349 && X < 400){
+            var GridX = 7;
+        }
+        if (X > 399 && X < 450){
+            var GridX = 8;
+        }
+        if (X > 449 && X < 500){
+            var GridX = 9;
+        }
+        if (X > 499 && X < 550){
+            var GridX = 10;
+        }
+        //This converts the Y pixels into grid postion
+        if (Y > 49 && Y < 100){
+            var GridY = "A";
+        }
+        if (Y > 99 && Y < 150){
+            var GridY = "B";
+        }
+        if (Y > 149 && Y < 200){
+            var GridY = "C";
+        }
+        if (Y > 199 && Y < 250){
+            var GridY = "D";
+        }
+        if (Y > 249 && Y < 300){
+            var GridY = "E";
+        }
+        if (Y > 299 && Y < 350){
+            var GridY = "F";
+        }
+        if (Y > 349 && Y < 400){
+            var GridY = "G";
+        }
+        if (Y > 399 && Y < 450){
+            var GridY = "H";
+        }
+        if (Y > 449 && Y < 500){
+            var GridY = "I";
+        }
+        if (Y > 499 && Y < 550){
+            var GridY = "J";
+        }
+        console.log(GridX + ", " + GridY)
+    });
+});
+
+
+
+
 // Write your JavaScript code.
 let board = [
     [0,1,2,3,4,5,6,7,8,9,10],
@@ -71,3 +146,5 @@ function displayBoard() {
     }
     document.getElementById('board').innerHTML = output;
 }
+
+displayBoard();

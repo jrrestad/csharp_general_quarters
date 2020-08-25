@@ -1,6 +1,9 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
-
+*{
+  padding: 0px;
+  margin: 0px;
+}
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -78,6 +81,7 @@ body {
   border: 1px solid black;
 }
 
+<<<<<<< HEAD
 .icon-flipped {
   transform: scaleX(-1);
   -moz-transform: scaleX(-1);
@@ -92,3 +96,29 @@ body {
 .form-transparent{
   opacity: 96%;
 }
+=======
+#chat{
+  min-height: 400px;
+  max-width: 380px;
+  padding: 5px;
+  overflow: auto;
+}
+#chat p{
+  padding: 0px;
+  margin: 0px;
+}
+.sent{
+  display: inline-flex;
+  float: right;
+}
+#FriendsFrame{
+  max-width: 200px;
+}
+#ChatFrame{
+  max-width: 350px;
+}
+#MapsFrame{
+  max-width: 600px;
+  padding-bottom: 5px;
+}
+>>>>>>> 5088c3b5e9c42a4ddb24a743399248650f15b7a7

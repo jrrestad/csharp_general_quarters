@@ -6,6 +6,8 @@ namespace General_Quarters.Models
     public class Profile
     {
         [Key]
+        public int ProfileId {get;set;}
+        
         [Required]
         [MinLength(2)]
         [Display(Name = "User Name")]
