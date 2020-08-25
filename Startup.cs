@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using General_Quarters.Hubs;
 using General_Quarters.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,7 @@ namespace General_Quarters
         // to access session directly from view, corresponds with: @using Microsoft.AspNetCore.Http in Views/_ViewImports.cshtml
         services.AddHttpContextAccessor();
         services.AddSession();
+        services.AddSignalR();
     
         services.AddMvc(options => options.EnableEndpointRouting = false);
     }
@@ -46,6 +48,12 @@ namespace General_Quarters
             app.UseStaticFiles();
             
             app.UseSession();
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+                endpoints.MapHub<Chat>("/chathub");
+            });
 
             app.UseMvc(routes =>
             {

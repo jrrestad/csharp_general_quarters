@@ -81,6 +81,20 @@ body {
   border: 1px solid black;
 }
 
+.icon-flipped {
+  transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+}
+
+.mt-10,
+.my-10 {
+  margin-top: 8rem !important;
+}
+.form-transparent{
+  opacity: 96%;
+}
 #chat{
   min-height: 400px;
   max-width: 380px;
@@ -104,4 +118,14 @@ body {
 #MapsFrame{
   max-width: 600px;
   padding-bottom: 5px;
+}
+.no-outline:focus {
+  outline: none;
+}
+.no-no-outline {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: #eee;
 }
