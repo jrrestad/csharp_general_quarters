@@ -6,6 +6,5 @@ namespace General_Quarters.Models
     {
         public GQContext(DbContextOptions options) : base(options) { }
         public DbSet<User> Users {get;set;}
-        public DbSet<Profile> Profiles {get;set;}
     }
 }

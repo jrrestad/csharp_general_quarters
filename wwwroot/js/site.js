@@ -20,7 +20,7 @@ function displayBoard() {
     var output = '';
 
     for (var i = 0; i < board.length; i ++) {
-        output += '\n<div>\n';
+        output += '\n<div class="board-row">\n';
         for (var j = 0; j < board[i].length; j++) {
             if (board[i][j] == 0) {
                 output += '<div class="board-square"></div>';
