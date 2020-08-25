@@ -29,11 +29,11 @@ namespace General_Quarters.Controllers
         [HttpGet("dashboard")]
         public IActionResult DashBoard()
         {
-           if (uid == null)
-           {
-               return RedirectToAction("Index", "Home");
-           }
-           return View("Dashboard", "GQ");
+            if (uid == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View("Dashboard", "GQ");
         }
     }
 }
