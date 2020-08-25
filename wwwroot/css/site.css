@@ -77,3 +77,18 @@ body {
   margin: -2px 0;
   border: 1px solid black;
 }
+
+.icon-flipped {
+  transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+}
+
+.mt-10,
+.my-10 {
+  margin-top: 8rem !important;
+}
+.form-transparent{
+  opacity: 96%;
+}

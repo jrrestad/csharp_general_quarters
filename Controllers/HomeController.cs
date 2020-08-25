@@ -60,7 +60,7 @@ namespace General_Quarters.Controllers
             db.SaveChanges();
             HttpContext.Session.SetInt32("UserId", user.UserId);
             HttpContext.Session.SetString("UserName", user.FirstName);
-            return RedirectToAction("Dashboard", "GQController");
+            return RedirectToAction("Dashboard", "GQ");
         }
 
         [HttpPost("Login")]
@@ -88,7 +88,7 @@ namespace General_Quarters.Controllers
 
                 HttpContext.Session.SetInt32("UserId", dbUser.UserId);
                 HttpContext.Session.SetString("UserName", dbUser.FirstName);
-                return RedirectToAction("Dashboard", "GQController");
+                return RedirectToAction("Dashboard", "GQ");
             }
             return View("LogIndex");
         }
