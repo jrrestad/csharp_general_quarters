@@ -77,3 +77,18 @@ body {
   margin: -2px 0;
   border: 1px solid black;
 }
+
+#chat{
+  min-height: 400px;
+  max-width: 380px;
+  padding: 5px;
+  overflow: auto;
+}
+#chat p{
+  padding: 0px;
+  margin: 0px;
+}
+.sent{
+  display: inline-flex;
+  float: right;
+}
