@@ -19,13 +19,13 @@ namespace General_Quarters.Controllers
             db = context;
         }
 
-        [HttpGet("Dashboard")]
+        [HttpGet("dashboard")]
         public IActionResult DashBoard()
         {
-            if (uid == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            // if (uid == null)
+            // {
+            //     return RedirectToAction("Index", "Home");
+            // }
             return View("Dashboard", "GQ");
         }
     }
