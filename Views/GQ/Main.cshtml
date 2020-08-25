@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "General Quarters Home";
+    string username = Context.Session.GetString("UserName");
+    int? uid = Context.Session.GetInt32("UserId");
+}
+
+@model List<Game>
+
+<div class="container d-flex justify-content-center mt-5">
+
+    <div class="col-4">
+        <form asp-controller="GQ" asp-action="CreateGame" method="post">
+            <input type="submit" class="btn btn-primary" value="Create new game">
+        </form>
+    </div>
+
+    <div class="col-4">
+
+    <h1>List of Games</h1>
+    @foreach (Game game in Model)
+    {
+            <h6>#@game.GameId @game.GameName by @game.Creator.FullName()
+        <ul>
+            @if (game.Creator.UserId == uid || game.JoinGames.Any(g => g.Joiner.UserId == uid))
+            {
+            <a asp-controller="GQ" asp-action="EnterGame" asp-route-gameId="@game.GameId">
+            Enter</a>
+            }
+            else
+            {
+            <a asp-controller="GQ" asp-action="JoinGame" asp-route-gameId="@game.GameId">
+                Join
+            </a>
+            <span>|</span>
+            <a asp-controller="GQ" asp-action="EnterGame" asp-route-gameId="@game.GameId">
+            Spectate
+            </a>
+            }
+        </ul>
+            </h6>
+    }
+    </div>
+</div>
