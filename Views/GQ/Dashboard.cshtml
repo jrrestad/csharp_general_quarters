@@ -1,8 +1,8 @@
 @{
     ViewData["Title"] = "General Quarters Home";
 }
-<div class="row">
-    <div class="col-2">
+<div class="row ">
+    <div id="FriendsFrame" class="col">
         <div class="row border border-dark justify-content-center p-1">
             <p>All Users</p>
             <input type="text" name="searchNames" id="searchNames" placeholder="search">
@@ -11,16 +11,16 @@
             <p>Friends</p>
         </div>
     </div>
-    <div class="col-6">
-        <div class="row ml-3">
+    <div id="MapsFrame" class="col">
+        <div class="enemyMap row ml-auto ">
             <img src="~/Content/Images/RadarScope.png" alt="RadarScope.png">
         </div>
-        <div class="row mt-3 ml-3">
+        <div class="friendlyMap row mt-3 ml-0">
             <img src="~/Content/Images/FriendlyGrid.png" alt="">
         </div>
 
     </div>
-    <div class="col-4">
+    <div id="ChatFrame" class="col">
         <div id="chat" class="row w-auto border border-dark align-content-end ">
             <div class="col">
                 <p class="recieved d-block "> <span class="text-danger">USERNAME -</span> Message text</p>
