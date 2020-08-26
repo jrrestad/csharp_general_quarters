@@ -15,7 +15,7 @@
     </div>
 
     <div class="col-4">
-
+    <input disabled id="userInput" class="no-outline no-no-outline bg-white d-none" value="@username"/>
     <h1>List of Games</h1>
     @foreach (Game game in Model)
     {
@@ -23,16 +23,19 @@
         <ul>
             @if (game.Creator.UserId == uid || game.JoinGames.Any(g => g.Joiner.UserId == uid))
             {
-            <a asp-controller="GQ" asp-action="EnterGame" asp-route-gameId="@game.GameId">
+            <a asp-controller="GQ" asp-action="EnterGame" asp-route-gameId="@game.GameId" id="join-group">
             Enter</a>
+            // hidden input, trying to join Game # as you clicked to open the game
+            <input disabled type="hidden" id="group-name" class="d-none" value="Game @game.GameId"/>
             }
             else
             {
-            <a asp-controller="GQ" asp-action="JoinGame" asp-route-gameId="@game.GameId">
+            <a asp-controller="GQ" asp-action="JoinGame" asp-route-gameId="@game.GameId" id="join-group">
                 Join
             </a>
+            <input disabled type="hidden" id="group-name" class="d-none" value="Game @game.GameId"/>
             <span>|</span>
-            <a asp-controller="GQ" asp-action="EnterGame" asp-route-gameId="@game.GameId">
+            <a asp-controller="GQ" asp-action="EnterGame" asp-route-gameId="@game.GameId" id="join-group">
             Spectate
             </a>
             }

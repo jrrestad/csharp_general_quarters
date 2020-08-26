@@ -33,7 +33,10 @@ namespace General_Quarters.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View("Dashboard");
+            Game thisGame = db.Games
+            .FirstOrDefault(game => game.GameId == gameId);
+
+            return View("Dashboard", thisGame);
         }
     }
 }
