@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace General_Quarters.Migrations
 {
     [DbContext(typeof(GQContext))]
-    [Migration("20200825192041_Migrate")]
-    partial class Migrate
+    [Migration("20200826192543_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -93,8 +93,7 @@ namespace General_Quarters.Migrations
 
                     b.HasKey("ProfileId");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("Profiles");
                 });
@@ -159,8 +158,8 @@ namespace General_Quarters.Migrations
             modelBuilder.Entity("General_Quarters.Models.Profile", b =>
                 {
                     b.HasOne("General_Quarters.Models.User", "User")
-                        .WithOne("Profile")
-                        .HasForeignKey("General_Quarters.Models.Profile", "UserId")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
