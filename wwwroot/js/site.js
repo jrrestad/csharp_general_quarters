@@ -139,6 +139,13 @@ $( document ).ready(function() {
         }
         console.log("FriendlyMap " + GridX + ", " + GridY)
     });
+
+    $("#Carrier").dblclick(function(){
+        $(this).toggleClass('rotated');
+    })
+    $("#Carrier").click(function(){
+        $(this).select();
+    })
 });
 
 
