@@ -50,8 +50,9 @@ namespace General_Quarters.Models
 
         // Navigation Prarameters
 
-        //np
 
+        public List<Game> CreatedGames {get;set;}
+        public List<JoinGame> UserGames {get;set;} 
         // ctor
         public string FullName()
         {

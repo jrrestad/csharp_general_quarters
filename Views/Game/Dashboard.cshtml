@@ -1,0 +1,32 @@
+@model Game
+
+@{
+    ViewData["Title"] = "General Quarters Home";
+    string username = Context.Session.GetString("UserName");
+}
+
+<div class="row ">
+    <div id="FriendsFrame" class="col">
+        <div class="row border border-dark justify-content-center p-1">
+            <p>All Users</p>
+            <input type="text" name="searchNames" id="searchNames" placeholder="search">
+        </div>
+        <div class="row border border-dark justify-content-center mt-3 p-1">
+            <p>Friends</p>
+        </div>
+    </div>
+    <div id="MapsFrame" class="col">
+        <div class="enemyMap row ml-auto ">
+            
+        </div>
+        <div class="friendlyMap row ml-auto mt-3">
+            
+        </div>
+    </div>
+    <div id="ChatFrame" class="col">
+        <partial name="_Chat" model="@Model.GameId">
+        </div>
+    </div>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
