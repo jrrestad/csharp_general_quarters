@@ -91,8 +91,7 @@ namespace General_Quarters.Migrations
 
                     b.HasKey("ProfileId");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("Profiles");
                 });
@@ -157,8 +156,8 @@ namespace General_Quarters.Migrations
             modelBuilder.Entity("General_Quarters.Models.Profile", b =>
                 {
                     b.HasOne("General_Quarters.Models.User", "User")
-                        .WithOne("Profile")
-                        .HasForeignKey("General_Quarters.Models.Profile", "UserId")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
