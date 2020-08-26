@@ -2,17 +2,16 @@ namespace General_Quarters.Models
 {
     public class Player
     {   
-        //this is going to become the player model that will be saved
-        //[Key]
+
         public int PlayerID {get;set;}
-        public int GameID {get;set;}
+        public int GameID {get;set;} 
+        public bool hasLost {get;set;} = false;
         public Board PlayerBoard {get;set;} = new Board();
         public Destroyer PDestroyer {get;set;} = new Destroyer();
         public Crusier PCrusier {get;set;} = new Crusier();
         public Submarine PSubmarine {get;set;} = new Submarine();
         public Battleship PBattleship {get;set;} = new Battleship();
         public Carrier PCarrier {get;set;} = new Carrier();
-        public bool hasLost {get;set;} = false;
 
         public Player()
         {
