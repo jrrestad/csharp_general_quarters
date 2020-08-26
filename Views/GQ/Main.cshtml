@@ -10,37 +10,41 @@
 
     <div class="col-4">
         <form asp-controller="GQ" asp-action="CreateGame" method="post">
-            <input type="submit" class="btn btn-primary" value="Create new game">
+            <input type="submit" class="btn btn-primary form-control" value="Create new game">
         </form>
-    </div>
-
-    <div class="col-4">
-    <input disabled id="userInput" class="no-outline no-no-outline bg-white d-none" value="@username"/>
+    <div class="col-12"><hr /></div>
     <h1>List of Games</h1>
     @foreach (Game game in Model)
     {
-            <h6>#@game.GameId @game.GameName by @game.Creator.FullName()
+    <h6>#@game.GameId @game.GameName by @game.Creator.FullName()
         <ul>
             @if (game.Creator.UserId == uid || game.JoinGames.Any(g => g.Joiner.UserId == uid))
             {
-            <a asp-controller="GQ" asp-action="EnterGame" asp-route-gameId="@game.GameId" id="join-group">
-            Enter</a>
-            // hidden input, trying to join Game # as you clicked to open the game
-            <input disabled type="hidden" id="group-name" class="d-none" value="Game @game.GameId"/>
+            <a asp-controller="GQ"
+                asp-action="EnterGame"
+                asp-route-gameId="@game.GameId"
+                id="join-group">
+                Enter</a>
             }
             else
             {
-            <a asp-controller="GQ" asp-action="JoinGame" asp-route-gameId="@game.GameId" id="join-group">
-                Join
-            </a>
-            <input disabled type="hidden" id="group-name" class="d-none" value="Game @game.GameId"/>
+            <a asp-controller="GQ"
+                asp-action="JoinGame"
+                asp-route-gameId="@game.GameId"
+                id="join-group">
+                Join</a>
             <span>|</span>
-            <a asp-controller="GQ" asp-action="EnterGame" asp-route-gameId="@game.GameId" id="join-group">
-            Spectate
-            </a>
+            <a asp-controller="GQ"
+                asp-action="EnterGame"
+                asp-route-gameId="@game.GameId"
+                id="join-group">
+                Spectate</a>
             }
         </ul>
-            </h6>
+    </h6>
     }
+    </div>
+    <div class="col">
+    <partial name="_ChatGlobal">
     </div>
 </div>
