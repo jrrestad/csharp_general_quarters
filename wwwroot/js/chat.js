@@ -46,7 +46,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 
 connection.on("Send", function (message) {
-    var li = document.createElement("li");
+    var li = document.createElement("h6");
     li.textContent = message;
     document.getElementById("messagesList").appendChild(li);
 });
@@ -90,10 +90,6 @@ document.getElementById("leave-group").addEventListener("click", async (event) =
     event.preventDefault();
 });
 
-// var chat = $.connection.Chat;
-// $.connection.hub.start();
-// chat.server.AddToGroup("Global")
-
 // Auto join the channel when you click on link in Main page
 (async () => {
     try {
@@ -114,7 +110,3 @@ document.getElementById("leave-group").addEventListener("click", async (event) =
         console.error(e.toString());
     }
 })();
-// connection.onclose(async () => {
-//     await start();
-//     console.log("disconnected")
-// });
