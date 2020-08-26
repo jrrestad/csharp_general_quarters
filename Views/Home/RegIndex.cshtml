@@ -4,15 +4,16 @@
 
 @model User
 
-<div class="container p-5">
-    <form asp-controller="Home" asp-action="Register" method="post">
+<div class="container">
+        @* <img src="~/images/war-ship.png" class="img ml-5 d-inline" width="20%" alt="My image" /> *@
+    <form asp-controller="Home" asp-action="Register" method="post" class="form-transparent">
     <h1 class="text-center">Please Register</h1>
     <div class="col-md-5  bg-light border mx-auto rounded shadow p-5">
 
         <div class="form-group">
             @* <label asp-for="FirstName"></label> *@
             <span class="text-danger myOwnClass" asp-validation-for="FirstName"></span>
-            <input class="form-control" asp-for="FirstName" placeholder="First Name">
+            <input class="form-control not-trans" asp-for="FirstName" placeholder="First Name">
         </div>
 
         <div class="form-group">
@@ -45,7 +46,9 @@
         </div>
     </div>
     </form>
+        @* <img src="~/images/war-ship.png" class="img mr-5 icon-flipped" width="20%" alt="My image" /> *@
     @* <div class="d-flex justify-content-center mt-3 mb-0">
         &copy;2020 - Login and Registration 
     </div> *@
+
 </div>
