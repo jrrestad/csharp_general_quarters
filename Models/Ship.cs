@@ -4,9 +4,18 @@ namespace General_Quarters.Models
 {
     public class Ship
     {
-        [Key]
-        public int ShipId { get; set; }
         public string Name {get;set;}
         public int ShipLength {get;set;}
+        public char ShipType {get;set;}
+    }
+
+    public class Destroyer : Ship
+    {
+        public Destroyer()
+        {
+            Name = "Destroyer";
+            ShipLength = 2;
+            ShipType = 'D';
+        }
     }
 }
