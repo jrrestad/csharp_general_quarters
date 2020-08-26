@@ -1,0 +1,42 @@
+@model int
+
+@{
+    ViewData["Title"] = "General Quarters Home";
+    string username = Context.Session.GetString("UserName");
+}
+
+<div class="container">
+        <div class="row justify-content-center">
+            <h3>Chat</h3>
+            &nbsp;
+        </div>
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            <form class="form-inline">
+                <div class="input-prepend input-append">
+                    <input type="button" id="join-group" class="btn btn-link" value="Join Group" />
+                    <input type="button" id="leave-group" class="btn btn-link" value="Leave Group" />
+                    <textarea placeholder="Enter a message..." id="group-message-text" cols="50" rows="3" class="form-control mb-3"></textarea>
+                    <div class="d-flex justify-content-between">
+                        <select class="form-control" name="group-name" id="group-name">
+                            <option value="Game @Model">Game @Model</option>
+                            <option value="Global">Global</option>
+                        </select>
+                        <input disabled type="hidden" value="Game @Model" name="group-name" id="auto-join">
+                        <input disabled id="userInput" class="no-outline no-no-outline bg-white d-none" value="@username"/>
+                        <input type="button" id="groupmsg" class="btn btn-primary" value="Send to Group" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-12"><hr /></div>
+    @* <div class="row"> *@
+        @* <div class="col-6">&nbsp;</div> *@
+        <div class="col-12">
+            <ul id="messagesList"></ul>
+        </div>
+    @* </div> *@
+</div>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using General_Quarters.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace General_Quarters.Controllers
 {
@@ -26,14 +27,63 @@ namespace General_Quarters.Controllers
             db = context;
         }
 
-        [HttpGet("dashboard")]
-        public IActionResult DashBoard()
+        [HttpGet("main")]
+        public IActionResult Main()
         {
             if (uid == null)
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View("Dashboard", "GQ");
+            List<Game> allGames = db.Games
+            .Include(g => g.Creator)
+            .Include(g => g.JoinGames)
+            .ThenInclude(g => g.Joiner)
+            .OrderByDescending(g => g.CreatedAt)
+            .ToList();
+
+            return View("Main", allGames);
+        }
+
+
+        [HttpPost("CreateGame")]
+        public IActionResult CreateGame(Game newGame)
+        {
+            if (uid == null){
+                return RedirectToAction("Index", "Home");
+            }
+            newGame.UserId = (int)uid;
+            db.Add(newGame);
+            db.SaveChanges();
+
+            return RedirectToAction("DashBoard", "Game", new { gameId = newGame.GameId });
+        }
+
+        [HttpGet("JoinGame")]
+        public IActionResult JoinGame(JoinGame newJoin)
+        {
+            if (uid == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            JoinGame alreadyJoined = db.JoinedGames
+            .Include(game => game.GameToJoin)
+            .ThenInclude(game => game.Creator)
+            .FirstOrDefault(j => j.GameId == newJoin.GameId && j.UserId == uid);
+
+            if (alreadyJoined == null)
+            {
+                newJoin.UserId = (int)uid;
+                db.JoinedGames.Add(newJoin);
+                db.SaveChanges();
+                return RedirectToAction("DashBoard", "Game", new { gameId = newJoin.GameId} ); 
+            }
+            return RedirectToAction("Main");
+        }
+        [HttpGet("EnterGame")]
+        public IActionResult EnterGame(int gameId)
+        {
+            return RedirectToAction("DashBoard", "Game", new { gameId = gameId} );
         }
     }
 }

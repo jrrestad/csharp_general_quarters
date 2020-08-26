@@ -51,8 +51,9 @@ namespace General_Quarters.Models
         // Navigation Prarameters
         public Profile Profile {get;set;}
 
-        //np
 
+        public List<Game> CreatedGames {get;set;}
+        public List<JoinGame> UserGames {get;set;} 
         // ctor
         public string FullName()
         {

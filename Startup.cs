@@ -6,6 +6,7 @@ using General_Quarters.Hubs;
 using General_Quarters.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +33,7 @@ namespace General_Quarters
         services.AddSignalR();
     
         services.AddMvc(options => options.EnableEndpointRouting = false);
+        services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
     }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
