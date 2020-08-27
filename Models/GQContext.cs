@@ -9,5 +9,7 @@ namespace General_Quarters.Models
         public DbSet<Game> Games {get;set;}
         public DbSet<JoinGame> JoinedGames {get;set;}
         public DbSet<Profile> Profiles {get;set;}
+        public DbSet<Coordinates> Coordinatess {get;set;}
+        
     }
 }

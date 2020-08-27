@@ -25,23 +25,23 @@ namespace General_Quarters.Models
             {
                 for(int j=0;j<11;j++)
                 {
-                    if(this.PlayerBoard.newBoard[i,j] == 3)
+                    if(this.PlayerBoard.board[i][j] == 3)
                     {
                         DE = DE +1;
                     }
-                    if(this.PlayerBoard.newBoard[i,j] == 4)
+                    if(this.PlayerBoard.board[i][j] == 4)
                     {
                         CR = CR +1;
                     }
-                    if(this.PlayerBoard.newBoard[i,j] == 5)
+                    if(this.PlayerBoard.board[i][j] == 5)
                     {
                         SU = SU +1;
                     }
-                    if(this.PlayerBoard.newBoard[i,j] == 6)
+                    if(this.PlayerBoard.board[i][j] == 6)
                     {
                         BA = BA +1;
                     }
-                    if(this.PlayerBoard.newBoard[i,j] == 7)
+                    if(this.PlayerBoard.board[i][j] == 7)
                     {
                         CA = CA +1;
                     }

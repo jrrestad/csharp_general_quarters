@@ -148,3 +148,7 @@ body {
   width: 550px;
   height: 550px;
 }
+
+.Ship{
+  background: darkslategray;
+}
