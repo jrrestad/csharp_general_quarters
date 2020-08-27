@@ -26,19 +26,18 @@
                 id="join-group">
                 Enter</a>
             }
-            else
+            else if (game.Creator.UserId != uid && game.JoinGames.All(g => g.GameId != game.GameId))
+            // Check if the gameId has a JoinGameId with an associated gameId
             {
             <a asp-controller="GQ"
                 asp-action="JoinGame"
                 asp-route-gameId="@game.GameId"
                 id="join-group">
                 Join</a>
-            <span>|</span>
-            <a asp-controller="GQ"
-                asp-action="EnterGame"
-                asp-route-gameId="@game.GameId"
-                id="join-group">
-                Spectate</a>
+            }
+            else
+            {
+                <h6 class="mt-1 text-muted">Game is Full</h6>
             }
             @if (game.Creator.UserId == uid)
             {
