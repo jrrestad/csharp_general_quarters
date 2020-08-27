@@ -69,8 +69,8 @@ namespace General_Quarters.Controllers
             JoinGame alreadyJoined = db.JoinedGames
             .Include(game => game.GameToJoin)
             .ThenInclude(game => game.Creator)
-            .FirstOrDefault(j => j.GameId == newJoin.GameId && j.UserId == uid);
-
+            .FirstOrDefault(j => j.GameId == newJoin.GameId);
+            
             if (alreadyJoined == null)
             {
                 newJoin.UserId = (int)uid;
