@@ -80,10 +80,27 @@ namespace General_Quarters.Controllers
             }
             return RedirectToAction("Main");
         }
+
         [HttpGet("EnterGame")]
         public IActionResult EnterGame(int gameId)
         {
             return RedirectToAction("DashBoard", "Game", new { gameId = gameId} );
+        }
+        
+        [HttpGet("DeleteGame")]
+        public IActionResult DeleteGame(int gameId)
+        {
+            if (uid == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            Game thisGame = db.Games
+            .Include(game => game.Creator)
+            .FirstOrDefault(game => game.GameId == gameId && game.Creator.UserId == uid);
+
+            db.Games.Remove(thisGame);
+            db.SaveChanges();
+            return RedirectToAction("Main");
         }
     }
 }

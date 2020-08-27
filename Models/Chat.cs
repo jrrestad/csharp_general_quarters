@@ -22,6 +22,12 @@ namespace General_Quarters.Hubs
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
 
             await Clients.Group(groupName).SendAsync("Send", $"{user} has joined {groupName} chat.");
+            // await Clients.Group(groupName).SendAsync("Test");
+        }
+
+        public Task Test2(string groupName)
+        {
+            return Clients.Group(groupName).SendAsync("Test");
         }
 
         public async Task RemoveFromGroup(string groupName, string user)
