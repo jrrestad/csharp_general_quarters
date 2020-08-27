@@ -33,7 +33,6 @@ namespace General_Quarters
         services.AddSignalR();
     
         services.AddMvc(options => options.EnableEndpointRouting = false);
-        services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
     }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

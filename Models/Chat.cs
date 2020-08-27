@@ -92,7 +92,13 @@ namespace General_Quarters.Hubs
             //convert player to json
             //save player to database
             //return game message player(number) ready.
-            Console.WriteLine("Something happened");
+            SendReadyMessage(groupName, user);
+        }
+
+        public Task SendReadyMessage(string groupName, string user)
+        {
+            string message = $"{user} is ready!";
+            return Clients.Group(groupName).SendAsync("Send", message);
         }
     }
 }
