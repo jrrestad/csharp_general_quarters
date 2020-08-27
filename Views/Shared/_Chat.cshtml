@@ -17,7 +17,7 @@
         <div class="col-12"><hr /></div>
         <input type="button" id="groupmsg" class="btn-primary form-control" value="Send to Group" />
         <div class="col-12"><hr /></div>
-        <div class="col-12 form-control border overflow-auto mb-3" style="height: 200px;">
+        <div id="messageBox" class="col-12 form-control border overflow-auto mb-3" style="height: 200px;">
             <h6 id="messagesList"></h6>
         </div>
     </div>
@@ -25,7 +25,10 @@
 
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>
-
+<script>
+    var messageBody = document.querySelector('#messageBody');
+    messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+</script>
                 @* <select class="form-control" name="group-name" id="group-name">
                     <option value="Game @Model">Game @Model</option>
                     <option value="Global">Global</option>

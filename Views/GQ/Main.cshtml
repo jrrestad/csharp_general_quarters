@@ -40,6 +40,15 @@
                 id="join-group">
                 Spectate</a>
             }
+            @if (game.Creator.UserId == uid)
+            {
+            <span>|</span>
+            <a asp-controller="GQ"
+                asp-action="DeleteGame"
+                asp-route-gameId="@game.GameId"
+                id="join-group">
+                Delete</a>
+            }
         </ul>
     </h6>
     }
