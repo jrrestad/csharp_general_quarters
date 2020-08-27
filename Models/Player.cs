@@ -3,8 +3,8 @@ namespace General_Quarters.Models
     public class Player
     {   
 
-        public int PlayerID {get;set;}
-        public int GameID {get;set;} 
+        public string PlayerID {get;set;}
+        public string GameID {get;set;} 
         public bool hasLost {get;set;} = false;
         public Board PlayerBoard {get;set;} = new Board();
         public Destroyer PDestroyer {get;set;} = new Destroyer();
