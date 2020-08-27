@@ -201,6 +201,14 @@ function getCaPos(){
     var Row = $("#CARow").val();
     var Col = $("#CACol").val();
     var Align = $("#CAAlign").val();
+    // if (Align == "H")
+    // {
+    //     Align = 0;
+    // }
+    // if (Align == "V")
+    // {
+    //     Align ==1;
+    // }
     var CarrierPos = {
         Row: Row,
         Col: Col,
@@ -212,6 +220,14 @@ function getBaPos(){
     var Row = $("#BARow").val();
     var Col = $("#BACol").val();
     var Align = $("#BAAlign").val();
+    // if (Align == "H")
+    // {
+    //     Align = 0;
+    // }
+    // if (Align == "V")
+    // {
+    //     Align ==1;
+    // }
     var BattlePos = {
         Row: Row,
         Col: Col,
@@ -223,6 +239,14 @@ function getSuPos(){
     var Row = $("#SURow").val();
     var Col = $("#SUCol").val();
     var Align = $("#SUAlign").val();
+    // if (Align == "H")
+    // {
+    //     Align = 0;
+    // }
+    // if (Align == "V")
+    // {
+    //     Align ==1;
+    // }
     var SubPos = {
         Row: Row,
         Col: Col,
@@ -234,6 +258,14 @@ function getCrPos(){
     var Row = $("#CRRow").val();
     var Col = $("#CRCol").val();
     var Align = $("#CRAlign").val();
+    // if (Align == "H")
+    // {
+    //     Align = 0;
+    // }
+    // if (Align == "V")
+    // {
+    //     Align ==1;
+    // }
     var CruPos = {
         Row: Row,
         Col: Col,
@@ -245,6 +277,14 @@ function getDePos(){
     var Row = $("#DERow").val();
     var Col = $("#DECol").val();
     var Align = $("#DEAlign").val();
+    // if (Align == "H")
+    // {
+    //     Align = 0;
+    // }
+    // if (Align == "V")
+    // {
+    //     Align ==1;
+    // }
     var DesPos = {
         Row: Row,
         Col: Col,
@@ -265,8 +305,9 @@ document.getElementById("Start").addEventListener("click", async (event)=> {
     var groupName = document.getElementById("group-name").value;
     var user = document.getElementById("userInput").value;
     try{
-        // await connection.invoke("addPlayer", user, groupName, Carrier, Battleship,Submarine,Cruiser,Destroyer);
-        await connection.invoke("addPlayer");
+        console.log("here")
+        await connection.invoke("addPlayer", user, groupName, Carrier, Battleship,Submarine,Cruiser,Destroyer);
+        // await connection.invoke("addPlayer");
         $(".PlacePieces").remove(".PlacePieces");
     }
     catch(e){

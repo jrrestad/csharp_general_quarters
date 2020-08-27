@@ -38,5 +38,10 @@ namespace General_Quarters.Controllers
 
             return View("Dashboard", thisGame);
         }
+
+        public int? ReturnSessionId()
+        {
+            return HttpContext.Session.GetInt32("UserId");
+        }
     }
 }
