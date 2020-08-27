@@ -13,6 +13,7 @@ namespace General_Quarters.Hubs
 
         public Task SendMessageToGroup(string groupName, string message, string user)
         {
+
             // return Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId}: {message}");
             return Clients.Group(groupName).SendAsync("Send", $"[{groupName}] {user} says: {message}");
         }
@@ -40,6 +41,11 @@ namespace General_Quarters.Hubs
         public Task SendPrivateMessage(string user, string message)
         {
             return Clients.User(user).SendAsync("ReceiveMessage", message);
+        }
+
+        public void addPlayer()
+        {
+            Console.WriteLine("Something happened");
         }
     }
 }

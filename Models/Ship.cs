@@ -9,6 +9,7 @@ namespace General_Quarters.Models
         public int ShipHealth {get;set;}
         public int ShipType { get; set; }
         public bool IsDead {get;set;}
+        public int CoordID {get;set;}
         public Coordinates SLocation {get;set;}
     }
 
