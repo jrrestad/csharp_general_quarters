@@ -153,12 +153,12 @@ body {
   background: darkslategray;
 }
 .Hit{
-  background-image: url("../Content/Images/ExplosionSM.gif");
+  
   width: 50px !important;
 }
 
 .Miss{
-  background-image: url("../Content/Images/Splash-Sm.gif");
+  
   width: 50px !important;
 
 }

@@ -35,7 +35,7 @@ namespace General_Quarters.Controllers
             }
             Game thisGame = db.Games
             .FirstOrDefault(game => game.GameId == gameId);
-
+            ViewBag.UserId = uid.ToString();
             return View("Dashboard", thisGame);
         }
 

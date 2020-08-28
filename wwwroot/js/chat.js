@@ -42,7 +42,7 @@ document.getElementById("join-group").addEventListener("click", async (event) =>
     var user = document.getElementById("userInput").value;
     try {
         await connection.invoke("AddToGroup", groupName, user);
-        console.log("Logging: Connected to " + groupName)
+        // console.log("Logging: Connected to " + groupName)
     }
     catch (e) {
         console.error(e.toString());
@@ -55,7 +55,7 @@ document.getElementById("leave-group").addEventListener("click", async (event) =
     var user = document.getElementById("userInput").value;
     try {
         await connection.invoke("RemoveFromGroup", groupName, user);
-        console.log("Logging: Disconnected from  " + groupName)
+        // console.log("Logging: Disconnected from  " + groupName)
     }
     catch (e) {
         console.error(e.toString());
@@ -71,13 +71,13 @@ document.getElementById("leave-group").addEventListener("click", async (event) =
         var user = document.getElementById("userInput").value;
         try {
             await connection.invoke("AddToGroup", groupName, user);
-            console.log("Logging: Connected to " + groupName)
+            // console.log("Logging: Connected to " + groupName)
         }
         catch (e) {
             console.error(e.toString());
         }
         event.preventDefault();
-        console.log("Connection working:")
+        // console.log("Connection working:")
     }
     catch (e) {
         console.error(e.toString());
@@ -91,7 +91,7 @@ document.getElementById("leave-group").addEventListener("click", async (event) =
         var user = document.getElementById("userInput").value;
         try {
             await connection.invoke("RemoveFromGroup", groupName, user);
-            console.log("Logging: Disconnected from " + groupName)
+            // console.log("Logging: Disconnected from " + groupName)
         }
         catch (e) {
             console.error(e.toString());

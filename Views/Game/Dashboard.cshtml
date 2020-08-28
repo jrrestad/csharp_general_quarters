@@ -2,6 +2,7 @@
 
 @{
     string username = Context.Session.GetString("UserName");
+    
 }
 
 <div class="row">
@@ -38,3 +39,4 @@
 
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>
+<script>var userid = @ViewBag.UserId</script>

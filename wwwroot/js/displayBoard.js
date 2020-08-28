@@ -34,8 +34,14 @@ function displayBoard() {
         }
         friendlyOutput += '\n</div>';
     }
-    document.getElementById('friendlyMap').innerHTML = friendlyOutput;
-    document.getElementById('enemyMap').innerHTML = enemyOutput;
+    var chkFriend = document.getElementById('friendlyMap');
+    var chkEnemy = document.getElementById('enemyMap');
+    if(chkFriend){
+        document.getElementById('friendlyMap').innerHTML = friendlyOutput;
+    }
+    if(chkEnemy){
+        document.getElementById('enemyMap').innerHTML = enemyOutput;
+    }
 }
 
 displayBoard();

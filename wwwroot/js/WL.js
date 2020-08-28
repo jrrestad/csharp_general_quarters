@@ -71,8 +71,8 @@ function Lose(){
 function ClearEnemyBoard(){
     for(let i=0;i<11;i++){
         for(let j=0;j<11;j++){
-            $("#enemy"+i+j).removeClass("Hit");
-            $("#enemy"+i+j).removeClass("Miss");
+            $("#enemy"+i+j).css("backgroundImage","");
+            $("#enemy"+i+j).css("backgroundImage","");
 
         }
     }

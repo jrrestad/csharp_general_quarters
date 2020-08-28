@@ -10,7 +10,7 @@ function getCarrierPlacement(){
     var Row = $("#CARow").val();
     var Col = $("#CACol").val();
     var Align = $("#CAAlign").val();
-    console.log(Row, Col, Align);
+    // console.log(Row, Col, Align);
     Row = parseInt(Row);
     Col = parseInt(Col);
     if (Align == "H"){
@@ -32,8 +32,8 @@ function getCarrierPlacement(){
         for(let i =0;i<5;i++){
             Row = Row+1
             let row = Row-1
-            console.log(Row,i);
-            console.log("friendly"+Row+Col);
+            // console.log(Row,i);
+            // console.log("friendly"+Row+Col);
             $("#friendly"+row+Col).addClass("Ship");
         }
     }
@@ -43,7 +43,7 @@ function getBSPlacement(){
     var Row = $("#BARow").val();
     var Col = $("#BACol").val();
     var Align = $("#BAAlign").val();
-    console.log(Row, Col, Align);
+    // console.log(Row, Col, Align);
     Row = parseInt(Row);
     Col = parseInt(Col);
     if (Align == "H"){
@@ -65,8 +65,8 @@ function getBSPlacement(){
         for(let i =0;i<4;i++){
             Row = Row+1
             let row = Row-1
-            console.log(Row,i);
-            console.log("friendly"+Row+Col);
+            // console.log(Row,i);
+            // console.log("friendly"+Row+Col);
             $("#friendly"+row+Col).addClass("Ship");
         }
     }
@@ -76,7 +76,7 @@ function getSubPlacement(){
     var Row = $("#SURow").val();
     var Col = $("#SUCol").val();
     var Align = $("#SUAlign").val();
-    console.log(Row, Col, Align);
+    // console.log(Row, Col, Align);
     Row = parseInt(Row);
     Col = parseInt(Col);
     if (Align == "H"){
@@ -98,8 +98,8 @@ function getSubPlacement(){
         for(let i =0;i<3;i++){
             Row = Row+1
             let row = Row-1
-            console.log(Row,i);
-            console.log("friendly"+Row+Col);
+            // console.log(Row,i);
+            // console.log("friendly"+Row+Col);
             $("#friendly"+row+Col).addClass("Ship");
         }
     }
@@ -109,7 +109,7 @@ function getCruiserPlacement(){
     var Row = $("#CRRow").val();
     var Col = $("#CRCol").val();
     var Align = $("#CRAlign").val();
-    console.log(Row, Col, Align);
+    // console.log(Row, Col, Align);
     Row = parseInt(Row);
     Col = parseInt(Col);
     if (Align == "H"){
@@ -131,8 +131,8 @@ function getCruiserPlacement(){
         for(let i =0;i<3;i++){
             Row = Row+1
             let row = Row-1
-            console.log(Row,i);
-            console.log("friendly"+Row+Col);
+            // console.log(Row,i);
+            // console.log("friendly"+Row+Col);
             $("#friendly"+row+Col).addClass("Ship");
         }
     }
@@ -142,7 +142,7 @@ function getDestroyerrPlacement(){
     var Row = $("#DERow").val();
     var Col = $("#DECol").val();
     var Align = $("#DEAlign").val();
-    console.log(Row, Col, Align);
+    // console.log(Row, Col, Align);
     Row = parseInt(Row);
     Col = parseInt(Col);
     if (Align == "H"){
@@ -164,8 +164,8 @@ function getDestroyerrPlacement(){
         for(let i =0;i<2;i++){
             Row = Row+1
             let row = Row-1
-            console.log(Row,i);
-            console.log("friendly"+Row+Col);
+            // console.log(Row,i);
+            // console.log("friendly"+Row+Col);
             $("#friendly"+row+Col).addClass("Ship");
         }
     }
@@ -173,7 +173,7 @@ function getDestroyerrPlacement(){
 function clearBoard(){
     for (let i = 0;i<11;i++){
         for (let j=0;j<11;j++){
-            console.log("friendly"+i+j);
+            // console.log("friendly"+i+j);
             $("#friendly"+i+j).removeClass("Ship");
         }
     }
@@ -193,6 +193,10 @@ $("#Places").click(function(event){
     getCruiserPlacement();
     getDestroyerrPlacement();
     $("#Start").removeClass("d-none");
+    // var userId = document.getElementById("@(ViewBag.UserId)").value;
+
+
+
 })
 
 // Create functions to gather the positions and alignment
@@ -296,22 +300,27 @@ function getDePos(){
 // $("#Start").click(function(event){
 //     $(".PlacePieces").remove(".PlacePieces");
 // })
-document.getElementById("Start").addEventListener("click", async (event)=> {
-    let Carrier = getCaPos();
-    let Battleship = getBaPos();
-    let Submarine = getSuPos();
-    let Cruiser = getCrPos();
-    let Destroyer = getDePos();
-    var groupName = document.getElementById("group-name").value;
-    var user = document.getElementById("userInput").value;
-    try{
-        console.log("here")
-        await connection.invoke("addPlayer", user, groupName, Carrier, Battleship,Submarine,Cruiser,Destroyer);
-        // await connection.invoke("addPlayer");
-        $(".PlacePieces").remove(".PlacePieces");
-    }
-    catch(e){
-        console.error(e.toString());
-    }
-    event.preventDefault();
-})
+var chkEl = document.getElementById("Start");
+if(chkEl){
+    document.getElementById("Start").addEventListener("click", async (event)=> {
+        let Carrier = getCaPos();
+        let Battleship = getBaPos();
+        let Submarine = getSuPos();
+        let Cruiser = getCrPos();
+        let Destroyer = getDePos();
+        var groupName = document.getElementById("group-name").value;
+        var user = document.getElementById("userInput").value;
+        var userId = userid.toString();
+    
+        try{
+            // console.log("here")
+            await connection.invoke("addPlayer",userId, user, groupName, Carrier, Battleship,Submarine,Cruiser,Destroyer);
+            // await connection.invoke("addPlayer");
+            $(".PlacePieces").remove(".PlacePieces");
+        }
+        catch(e){
+            console.error(e.toString());
+        }
+        event.preventDefault();
+    });
+}

@@ -4,6 +4,7 @@ namespace General_Quarters.Models
     {   
 
         public string PlayerID {get;set;}
+        public string PlayerName {get;set;}
         public string GameID {get;set;} 
         public bool hasLost {get;set;} = false;
         public Board PlayerBoard {get;set;} = new Board();
