@@ -152,3 +152,16 @@ body {
 .Ship{
   background: darkslategray;
 }
+.Hit{
+  background-image: url("../Content/Images/ExplosionSM.gif");
+  width: 48px !important;
+
+}
+.Miss{
+  background-image: url("../Content/Images/Splash-Sm.gif");
+  width: 48px !important;
+
+}
+.dis{
+  pointer-events: none;
+}
