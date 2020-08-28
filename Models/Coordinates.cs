@@ -13,5 +13,9 @@ namespace General_Quarters.Models
             X = x;
             Y = y;
         }
+        public Coordinates()
+        {
+            
+        }
     }
 }

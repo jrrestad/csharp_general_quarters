@@ -6,6 +6,7 @@ using General_Quarters.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System.Text.Json;
+using System.Linq;
 
 namespace General_Quarters.Hubs
 {
@@ -79,20 +80,99 @@ namespace General_Quarters.Hubs
             player.PlayerBoard.PlaceShip(player.PDestroyer, DestroyerCoord, (string)Destroyer["Align"]);
             string jsonObj;
             jsonObj = JsonSerializer.Serialize(player);
-            Console.WriteLine(jsonObj);
+            //query database to see if record exits with same game id
+            // if it does do this
+            if(db.PlayingGame.Any(g=>g.GameID==groupName))
+            {
+                GamePlayer newPlayer = new GamePlayer();
+                newPlayer.PlayerID = user;
+                newPlayer.GameID = groupName;
+                newPlayer.jPlayer = jsonObj;
+                db.PlayingGame.Add(newPlayer);
+                db.SaveChanges();
+                //add the start game function here and hide their 
+                //attack board.
+            }
+            else{
+                GamePlayer newPlayer = new GamePlayer();
+                newPlayer.PlayerID = user;
+                newPlayer.GameID = groupName;
+                newPlayer.jPlayer = jsonObj;
+                db.PlayingGame.Add(newPlayer);
+                db.SaveChanges();
+                //add player status to messages.
+            }
+        }
+        // public void Round(string user, string gameId, int x, int y)
+        public void Round(string user, string gameId, int x, int y)
+        {
+            Console.WriteLine("we made it to the first line of Round");
+            // int X = int.Parse(x);
+            // int Y = int.Parse(y);
+            int X = x;
+            int Y = y;
+            GamePlayer OpponentBoard = db.PlayingGame
+            .FirstOrDefault(g=>g.GameID == gameId && g.PlayerID != user);
+            Player Opp = new Player(); 
+            Opp = JsonSerializer.Deserialize<Player>(OpponentBoard.jPlayer);
+            int TileState = Opp.PlayerBoard.FireAt(X,Y);
+            bool GameStatus = Opp.CheckBoard();
+            string YY = "";
+            if(Y == 1)
+            {
+                YY = "A";
+            }
+            if(Y == 2)
+            {
+                YY = "B";
+            }
+            if(Y == 3)
+            {
+                YY = "C";
+            }
+            if(Y == 4)
+            {
+                YY = "D";
+            }
+            if(Y == 5)
+            {
+                YY = "E";
+            }
+            if(Y == 6)
+            {
+                YY = "F";
+            }
+            if(Y == 7)
+            {
+                YY = "G";
+            }
+            if(Y == 8)
+            {
+                YY = "H";
+            }
+            if(Y == 9)
+            {
+                YY = "I";
+            }
+            if(Y == 10)
+            {
+                YY = "J";
+            }
 
-            GamePlayer newPlayer = new GamePlayer();
-            newPlayer.PlayerID = user;
-            newPlayer.GameID = groupName;
-            newPlayer.jPlayer = jsonObj;
-            db.PlayingGame.Add(newPlayer);
-            db.SaveChanges();
-            
-            //create new player
-            //convert player to json
-            //save player to database
-            //return game message player(number) ready.
-            Console.WriteLine("Something happened");
+            if(!GameStatus){
+                string JsonObj = JsonSerializer.Serialize(Opp);
+                OpponentBoard.jPlayer = JsonObj;
+                db.PlayingGame.Update(OpponentBoard);
+                db.SaveChanges();
+                //logic to call the JQuery side and send
+                // GameState / TileState / user / gameId
+                string message = $"{user} has attacked {YY} - {X}!!";
+                // Clients.Group(gameId).SendAsync("Send", message);
+                Clients.OthersInGroup(gameId).SendAsync("Send",message);
+            }
+            Clients.Group(gameId).SendAsync("UpdateBoards", user, x, y, TileState);
+
+
         }
     }
 }
