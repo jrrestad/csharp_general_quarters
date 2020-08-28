@@ -54,4 +54,22 @@ connection.on("UpdateBoards", function (user, x, y, TileState){
         $("#enemyMap").removeClass("dis");
     }
 
+});
+
+connection.on("EndState", function(user){
+    var thisuser = document.getElementById("userInput").value;
+    ClearEnemyBoard();
+    if(thisuser == user){
+        Win();
+    }
+    if(thisuser != user){
+        Lose();
+    }
+    window.setTimeout(
+        function(){
+            window.location.replace("/main")
+        },
+        5000
+    );
+
 })
