@@ -2,7 +2,7 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 $( document ).ready(function() {
-    console.log( "ready!" );
+    // console.log( "ready!" );
     $(".enemyMap").mousemove(function(event){
         var X = event.pageX - $(this).offset().left;
         var Y = event.pageY - $(this).offset().top;
@@ -69,7 +69,7 @@ $( document ).ready(function() {
         if (Y > 499 && Y < 550){
             var GridY = "10";
         }
-        console.log("enemyMap " + GridX + ", " + GridY)
+        // console.log("enemyMap " + GridX + ", " + GridY)
     });
     $(".friendlyMap").mousemove(function(event){
         var X = event.pageX - $(this).offset().left;
@@ -137,7 +137,7 @@ $( document ).ready(function() {
         if (Y > 499 && Y < 550){
             var GridY = "10";
         }
-        console.log("FriendlyMap " + GridX + ", " + GridY)
+        // console.log("FriendlyMap " + GridX + ", " + GridY)
     });
 
     $("#Carrier").dblclick(function(){

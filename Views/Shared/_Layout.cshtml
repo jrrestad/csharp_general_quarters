@@ -31,7 +31,7 @@
                         @if (@Context.Session.GetInt32("UserId") != null)
                         {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="GQ" asp-action="Main">Lobby</a>
+                            <a id="LobbyButton" class="nav-link text-dark" asp-area="" asp-controller="GQ" asp-action="Main">Lobby</a>
                         </li>
                         <li class="nav-item">
                             <form asp-controller="Home" asp-action="logout" method="post">

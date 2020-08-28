@@ -63,7 +63,7 @@ namespace General_Quarters.Hubs
             Dictionary<string,string> Destroyer
             )
         {
-            Console.WriteLine("inside Add Player");
+            // Console.WriteLine("inside Add Player");
             Player player = new Player();
             Coordinates CarrierCoord = new Coordinates(int.Parse(Carrier["Col"]),int.Parse(Carrier["Row"]));
             Coordinates BattleshipCoord = new Coordinates(int.Parse(Battleship["Col"]),int.Parse(Battleship["Row"]));
@@ -109,7 +109,7 @@ namespace General_Quarters.Hubs
         // public void Round(string user, string gameId, int x, int y)
         public void Round(string userId, string user, string gameId, int x, int y)
         {
-            Console.WriteLine("we made it to the first line of Round");
+            // Console.WriteLine("we made it to the first line of Round");
             // int X = int.Parse(x);
             // int Y = int.Parse(y);
             int X = x;
@@ -209,6 +209,17 @@ namespace General_Quarters.Hubs
                     db.SaveChanges();
                 }
             }
+        }
+        public void DestroyGame(string gameId)
+        {
+            GamePlayer deadGame = db.PlayingGame
+            .FirstOrDefault(g=>g.GameID==gameId);
+            if(deadGame != null)
+            {
+                db.PlayingGame.Remove(deadGame);
+                db.SaveChanges();
+            }
+            Clients.Group(gameId).SendAsync("EndGame", gameId);
         }
     }
 }
