@@ -166,10 +166,24 @@ namespace General_Quarters.Hubs
                 db.SaveChanges();
                 //logic to call the JQuery side and send
                 // GameState / TileState / user / gameId
-                string message = $"{user} has attacked {YY} - {X}!!";
-                // Clients.Group(gameId).SendAsync("Send", message);
-                Clients.OthersInGroup(gameId).SendAsync("SendOutput", message);
-                Clients.OthersInGroup(gameId).SendAsync("SendOutput", "It's Your Turn");
+                string message = $"{user} has fired at {YY}-{X}!!";
+                Clients.Group(gameId).SendAsync("SendOutput", message);
+                // if (Opp.PDestroyer.IsDead) {
+                //     Clients.Group(gameId).SendAsync("SendOutput", $"{user} has sunk a Destroyer!");
+                // }
+                // else if (Opp.PCrusier.IsDead) {
+                //     Clients.Group(gameId).SendAsync("SendOutput", $"{user} has sunk a Cruiser!");
+                // }
+                // else if (Opp.PSubmarine.IsDead) {
+                //     Clients.Group(gameId).SendAsync("SendOutput", $"{user} has sunk a Submarine!");
+                // }
+                // else if (Opp.PBattleship.IsDead) {
+                //     Clients.Group(gameId).SendAsync("SendOutput", $"{user} has sunk a Battleship!");
+                // }
+                // else if (Opp.PCarrier.IsDead) {
+                //     Clients.Group(gameId).SendAsync("SendOutput", $"{user} has sunk a Carrier!");
+                // }
+                Clients.OthersInGroup(gameId).SendAsync("SendOutput", "*** It is your turn to fire! ***");
             }
             Clients.Group(gameId).SendAsync("UpdateBoards", user, x, y, TileState);
             if(GameStatus)
