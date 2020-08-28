@@ -53,6 +53,7 @@ namespace General_Quarters.Hubs
         }
 
         public void addPlayer(
+            string userId,
             string user,
             string groupName,
             Dictionary<string,string> Carrier,
@@ -69,7 +70,8 @@ namespace General_Quarters.Hubs
             Coordinates SubmarineCoord = new Coordinates(int.Parse(Submarine["Col"]),int.Parse(Submarine["Row"]));
             Coordinates CruiserCoord = new Coordinates(int.Parse(Cruiser["Col"]),int.Parse(Cruiser["Row"]));
             Coordinates DestroyerCoord = new Coordinates(int.Parse(Destroyer["Col"]),int.Parse(Destroyer["Row"]));
-            player.PlayerID = user;
+            player.PlayerID = userId;
+            player.PlayerName = user;
             player.GameID = groupName;
             player.PlayerBoard.PlaceShip(player.PCarrier, CarrierCoord, (string)Carrier["Align"]);
             player.PlayerBoard.PlaceShip(player.PBattleship, BattleshipCoord, (string)Battleship["Align"]);
@@ -83,28 +85,29 @@ namespace General_Quarters.Hubs
             if(db.PlayingGame.Any(g=>g.GameID==groupName))
             {
                 GamePlayer newPlayer = new GamePlayer();
-                newPlayer.PlayerID = user;
+                newPlayer.PlayerID = userId;
                 newPlayer.GameID = groupName;
                 newPlayer.jPlayer = jsonObj;
                 db.PlayingGame.Add(newPlayer);
                 db.SaveChanges();
-                string message = $"The game is ready to play!";
+                string message = $"{user} is ready to play!  LET'S GET IT ON!!";
                 Clients.Group(groupName).SendAsync("SendOutput", message);
                 //add the start game function here and hide their 
                 //attack board.
             }
             else{
                 GamePlayer newPlayer = new GamePlayer();
-                newPlayer.PlayerID = user;
+                newPlayer.PlayerID = userId;
                 newPlayer.GameID = groupName;
                 newPlayer.jPlayer = jsonObj;
                 db.PlayingGame.Add(newPlayer);
                 db.SaveChanges();
-                //add player status to messages.
+                string message = $"{user} is ready to play!";
+                Clients.Group(groupName).SendAsync("SendOutput", message);
             }
         }
         // public void Round(string user, string gameId, int x, int y)
-        public void Round(string user, string gameId, int x, int y)
+        public void Round(string userId, string user, string gameId, int x, int y)
         {
             Console.WriteLine("we made it to the first line of Round");
             // int X = int.Parse(x);
@@ -112,7 +115,7 @@ namespace General_Quarters.Hubs
             int X = x;
             int Y = y;
             GamePlayer OpponentBoard = db.PlayingGame
-            .FirstOrDefault(g=>g.GameID == gameId && g.PlayerID != user);
+            .FirstOrDefault(g=>g.GameID == gameId && g.PlayerID != userId);
             Player Opp = new Player(); 
             Opp = JsonSerializer.Deserialize<Player>(OpponentBoard.jPlayer);
             int TileState = Opp.PlayerBoard.FireAt(X,Y);
@@ -160,35 +163,41 @@ namespace General_Quarters.Hubs
             }
 
             if(!GameStatus){
-                string JsonObj = JsonSerializer.Serialize(Opp);
-                OpponentBoard.jPlayer = JsonObj;
-                db.PlayingGame.Update(OpponentBoard);
-                db.SaveChanges();
                 //logic to call the JQuery side and send
                 // GameState / TileState / user / gameId
                 string message = $"{user} has fired at {YY}-{X}!!";
                 Clients.Group(gameId).SendAsync("SendOutput", message);
-                // if (Opp.PDestroyer.IsDead) {
-                //     Clients.Group(gameId).SendAsync("SendOutput", $"{user} has sunk a Destroyer!");
-                // }
-                // else if (Opp.PCrusier.IsDead) {
-                //     Clients.Group(gameId).SendAsync("SendOutput", $"{user} has sunk a Cruiser!");
-                // }
-                // else if (Opp.PSubmarine.IsDead) {
-                //     Clients.Group(gameId).SendAsync("SendOutput", $"{user} has sunk a Submarine!");
-                // }
-                // else if (Opp.PBattleship.IsDead) {
-                //     Clients.Group(gameId).SendAsync("SendOutput", $"{user} has sunk a Battleship!");
-                // }
-                // else if (Opp.PCarrier.IsDead) {
-                //     Clients.Group(gameId).SendAsync("SendOutput", $"{user} has sunk a Carrier!");
-                // }
+
+                if (Opp.PDestroyer.IsDead == true && Opp.PDestroyer.Report == false) {
+                    Clients.Group(gameId).SendAsync("SendOutput", $"{user} has sunk a Destroyer!");
+                    Opp.PDestroyer.Report = true;
+                }
+                else if (Opp.PCrusier.IsDead == true && Opp.PCrusier.Report == false) {
+                    Clients.Group(gameId).SendAsync("SendOutput", $"{user} has sunk a Cruiser!");
+                    Opp.PCrusier.Report = true;
+                }
+                else if (Opp.PSubmarine.IsDead == true && Opp.PSubmarine.Report == false) {
+                    Clients.Group(gameId).SendAsync("SendOutput", $"{user} has sunk a Submarine!");
+                    Opp.PSubmarine.Report = true;
+                }
+                else if (Opp.PBattleship.IsDead == true && Opp.PBattleship.Report == false) {
+                    Clients.Group(gameId).SendAsync("SendOutput", $"{user} has sunk a Battleship!");
+                    Opp.PBattleship.Report = true;
+                }
+                else if (Opp.PCarrier.IsDead == true && Opp.PCarrier.Report == false) {
+                    Clients.Group(gameId).SendAsync("SendOutput", $"{user} has sunk a Carrier!");
+                    Opp.PCarrier.Report = true;
+                }
                 Clients.OthersInGroup(gameId).SendAsync("SendOutput", "*** It is your turn to fire! ***");
+                string JsonObj = JsonSerializer.Serialize(Opp);
+                OpponentBoard.jPlayer = JsonObj;
+                db.PlayingGame.Update(OpponentBoard);
+                db.SaveChanges();
             }
-            Clients.Group(gameId).SendAsync("UpdateBoards", user, x, y, TileState);
+            Clients.Group(gameId).SendAsync("UpdateBoards", userId, x, y, TileState);
             if(GameStatus)
             {
-                Clients.Group(gameId).SendAsync("EndState", user);
+                Clients.Group(gameId).SendAsync("EndState", userId);
                 string endstate = $"!!!!!{user} HAS WON!!!!!";
                 Clients.OthersInGroup(gameId).SendAsync("SendOutput", endstate );
                 List<GamePlayer> FinishedGame = db.PlayingGame
@@ -199,8 +208,6 @@ namespace General_Quarters.Hubs
                     db.PlayingGame.Remove(g);
                     db.SaveChanges();
                 }
-                // Game thisGame = db.Games
-                // .FirstOrDefault(game =>game.GameId == );
             }
         }
     }

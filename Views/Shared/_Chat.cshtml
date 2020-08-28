@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "General Quarters Home";
     string username = Context.Session.GetString("UserName");
+    string userId = Context.Session.GetInt32("UserId").ToString();
 }
 
 <div class="col-12 bg-light border rounded shadow p-0 mr-3">
@@ -19,6 +20,7 @@
         <input type="hidden" value="Game @Model" name="group-name" id="group-name">
         <input disabled type="hidden" value="Game @Model" name="group-name" id="auto-join">
         <input disabled id="userInput" class="no-outline no-no-outline bg-white d-none" value="@username"/>
+        <input disabled id="userIdentification" class="no-outline no-no-outline bg-white d-none" value="@userId"/>
         <input type="button" id="groupmsg" class="btn-primary mb-3 form-control" value="Send to Group" />
     </div>
 </div>

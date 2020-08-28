@@ -304,9 +304,10 @@ document.getElementById("Start").addEventListener("click", async (event)=> {
     let Destroyer = getDePos();
     var groupName = document.getElementById("group-name").value;
     var user = document.getElementById("userInput").value;
+    var userId = document.getElementById("userIdentification").value;
     try{
         console.log("here")
-        await connection.invoke("addPlayer", user, groupName, Carrier, Battleship,Submarine,Cruiser,Destroyer);
+        await connection.invoke("addPlayer",userId, user, groupName, Carrier, Battleship,Submarine,Cruiser,Destroyer);
         // await connection.invoke("addPlayer");
         $(".PlacePieces").remove(".PlacePieces");
     }

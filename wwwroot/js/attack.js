@@ -4,11 +4,12 @@ document.getElementById("enemyMap").addEventListener("click", async (event)=>{
     console.log("gamestarted");
     let X = ClickLocationX();
     let Y = ClickLocationY();
+    var userId = document.getElementById("userIdentification").value;
     var user = document.getElementById("userInput").value;
     var groupName = document.getElementById("group-name").value;
     try{
         console.log("fails here? attack line 10");
-        await connection.invoke("Round", user, groupName, X, Y);
+        await connection.invoke("Round",userId, user, groupName, X, Y);
         $("#enemyMap").addClass("dis");
     }
     catch (e) {
@@ -42,9 +43,9 @@ function playFinal() {
     sound.play();
 };
 
-connection.on("UpdateBoards", function (user, x, y, TileState){
-    var thisuser = document.getElementById("userInput").value;
-    if(thisuser == user){
+connection.on("UpdateBoards", function (userId, x, y, TileState){
+    var thisuser = document.getElementById("userIdentification").value;
+    if(thisuser == userId){
         //work on enemyMap
         if(TileState == 1){
             // $("#enemy"+y+x).addClass("Miss");
@@ -59,7 +60,7 @@ connection.on("UpdateBoards", function (user, x, y, TileState){
             playExplosion();
         }
     } 
-    if(thisuser != user){
+    if(thisuser != userId){
         //work on friendlyMap
         if(TileState == 1){
             // $("#friendly"+y+x).addClass("Miss");
@@ -78,14 +79,14 @@ connection.on("UpdateBoards", function (user, x, y, TileState){
 
 });
 
-connection.on("EndState", function(user){
-    var thisuser = document.getElementById("userInput").value;
+connection.on("EndState", function(userId){
+    var thisuser = document.getElementById("userIdentification").value;
     ClearEnemyBoard();
     playFinal();
-    if(thisuser == user){
+    if(thisuser == userId){
         Win();
     }
-    if(thisuser != user){
+    if(thisuser != userId){
         Lose();
     }
     window.setTimeout(
