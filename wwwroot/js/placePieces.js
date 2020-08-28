@@ -80,10 +80,10 @@ function getSubPlacement(){
     Row = parseInt(Row);
     Col = parseInt(Col);
     if (Align == "H"){
-        if (Col > 7){
-            Col = 7;
+        if (Col > 8){
+            Col = 8;
         }
-        for(let i =0;i<4;i++){
+        for(let i =0;i<3;i++){
             Col = Col+1
             let col = Col-1
             // console.log(Col,i);
@@ -92,10 +92,10 @@ function getSubPlacement(){
         }
     }
     if (Align == "V"){
-        if(Row > 7){
-            Row = 7;
+        if(Row > 8){
+            Row = 8;
         }
-        for(let i =0;i<4;i++){
+        for(let i =0;i<3;i++){
             Row = Row+1
             let row = Row-1
             console.log(Row,i);
