@@ -18,7 +18,7 @@ function displayBoard() {
         enemyOutput += '\n<div class="board-row">\n';
         for (var j = 0; j < board[i].length; j++) {
             if (board[i][j] == 0) {
-                enemyOutput += '<div id=enemy' + i + j + ' class="enemyMap-box"></div>';
+                enemyOutput += '<div id=enemy' + i + j + '></div>';
             }
         }
         enemyOutput += '\n</div>';
@@ -29,7 +29,7 @@ function displayBoard() {
         friendlyOutput += '\n<div class="board-row">\n';
         for (var j = 0; j < board[i].length; j++) {
             if (board[i][j] == 0) {
-                friendlyOutput += '<div id=friendly' + i + j + ' class="friendlyMap-box"></div>';
+                friendlyOutput += '<div id=friendly' + i + j + '></div>';
             }
         }
         friendlyOutput += '\n</div>';
