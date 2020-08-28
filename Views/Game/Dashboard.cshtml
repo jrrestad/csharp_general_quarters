@@ -1,12 +1,11 @@
 @model Game
 
 @{
-    ViewData["Title"] = "General Quarters Home";
     string username = Context.Session.GetString("UserName");
 }
 
-<div class="row ">
-    <div id="FriendsFrame" class="col">
+<div class="row">
+    @* <div id="FriendsFrame" class="col">
         <div class="row border border-dark justify-content-center p-1">
             <p>All Users</p>
             <input type="text" name="searchNames" id="searchNames" placeholder="search">
@@ -14,17 +13,17 @@
         <div class="row border border-dark justify-content-center mt-3 p-1">
             <p>Friends</p>
         </div>
+    </div> *@
+    <div class="col p-0">
+        <partial name="_GameOutput" model="@Model.GameId">
+        <partial name="_PlacePieces"></partial>
     </div>
-    <div id="MapsFrame" class="col">
-        <div class="enemyMap row ml-auto" id="enemyMap">
-            
-        </div>
-        <div class="friendlyMap row ml-auto mt-3" id="friendlyMap">  
-        </div>
+    <div id="MapsFrame" class=" p-0">
+        <div class="enemyMap row m-auto" id="enemyMap"></div>
+        <div class="friendlyMap row m-auto mt-3" id="friendlyMap"></div>
     </div>
-    <div class="col">
+    <div class="col p-0">
         <partial name="_Chat" model="@Model.GameId">
-        <partial name="_PlacePieces">
     </div>
 </div>
 
