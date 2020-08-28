@@ -171,20 +171,17 @@ namespace General_Quarters.Hubs
                 Clients.OthersInGroup(gameId).SendAsync("Send",message);
             }
             Clients.Group(gameId).SendAsync("UpdateBoards", user, x, y, TileState);
-
-
-            GamePlayer newPlayer = new GamePlayer();
-            newPlayer.PlayerID = user;
-            newPlayer.GameID = groupName;
-            newPlayer.jPlayer = jsonObj;
-            db.PlayingGame.Add(newPlayer);
-            db.SaveChanges();
-            
-            //create new player
-            //convert player to json
-            //save player to database
-            //return game message player(number) ready.
-            SendReadyMessage(groupName, user);
+            if(GameStatus)
+            {
+                List<GamePlayer> FinishedGame = db.PlayingGame
+                .Where(g=>g.GameID == gameId)
+                .ToList();
+                foreach(GamePlayer g in FinishedGame)
+                {
+                    db.PlayingGame.Remove(g);
+                    db.SaveChanges();
+                }
+            }
         }
 
         public Task SendReadyMessage(string groupName, string user)
