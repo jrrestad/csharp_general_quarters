@@ -1,86 +1,22 @@
-
-// **** Old code for data to Clients.All *****
-
-// "use strict";
-
-// var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
-
-//Disable send button until connection is established
-// document.getElementById("sendButton").disabled = true;
-
-// connection.on("ReceiveMessage", function (user, message) {
-//     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-//     var encodedMsg = user + " says: " + msg;
-//     var li = document.createElement("h6");
-//     var UserName = document.getElementById("userInput").value;
-//     if (user == UserName){
-//         li.className = "text-right text-primary"
-
-//     }
-//     li.textContent = encodedMsg;
-//     document.getElementById("messagesList").appendChild(li);
-// });
-
-// connection.start().then(function () {
-//     document.getElementById("sendButton").disabled = false;
-// }).catch(function (err) {
-//     return console.error(err.toString());
-// });
-
-// document.getElementById("sendButton").addEventListener("click", function (event) {
-//     var user = document.getElementById("userInput").value;
-//     var message = document.getElementById("messageInput").value;
-//     document.getElementById("messageInput").value="";
-//     connection.invoke("SendMessage", user, message).catch(function (err) {
-//         return console.error(err.toString());
-//     });
-//     event.preventDefault();
-// });
-
-
-// ***** New code for group joining, leaving, and messaging in groups *****
-
 const connection = new signalR.HubConnectionBuilder()
     .withUrl("/chatHub")
     .build();
 
-    // **** Test function *****
-// connection.on("Test", function () {
-//     var x = document.getElementById("myDIV");
-//     if (x.style.display === "none") {
-//       x.style.display = "block";
-//     } else {
-//       x.style.display = "none";
-//     }
-// });
-
-// document.getElementById("MyInput").addEventListener("click", async (event) => {
-//     // document.getElementById("MyInput").value="";
-//     var groupName = document.getElementById("group-name").value;
-//     try {
-//         await connection.invoke("Test2", groupName);
-//         }
-//     catch (e) {
-//         console.error(e.toString());
-//     }
-//     event.preventDefault();
-// });
-
-// **************************
-
-connection.on("Send", function (message, user) {
+connection.on("Send", function (message) {
     var encodedMsg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     var li = document.createElement("h6");
     var messageBox = document.querySelector('#messageBox')
     li.textContent = encodedMsg;
-    // var UserName = document.getElementById("userInput").value;
-    // if (user == UserName){
-    //     li.className = "text-primary"
-    // }
-    // else {
-    //     li.className = "text-danger"
-    // }
     document.getElementById("messagesList").appendChild(li);
+    messageBox.scrollTop = messageBox.scrollHeight - messageBox.clientHeight;
+});
+
+connection.on("SendOutput", function (message) {
+    var encodedMsg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    var li = document.createElement("h6");
+    var messageBox = document.querySelector('#outputBox')
+    li.textContent = encodedMsg;
+    document.getElementById("outputList").appendChild(li);
     messageBox.scrollTop = messageBox.scrollHeight - messageBox.clientHeight;
 });
 

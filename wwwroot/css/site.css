@@ -165,3 +165,11 @@ body {
 .dis{
   pointer-events: none;
 }
+
+.text-radar-green {
+  color: #255e21;
+}
+
+.bg-black {
+  background-color: black;
+}

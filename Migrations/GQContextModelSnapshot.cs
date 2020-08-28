@@ -42,6 +42,32 @@ namespace General_Quarters.Migrations
                     b.ToTable("Games");
                 });
 
+            modelBuilder.Entity("General_Quarters.Models.GamePlayer", b =>
+                {
+                    b.Property<int>("GpId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("GameID")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("PlayerID")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("jPlayer")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("GpId");
+
+                    b.ToTable("PlayingGame");
+                });
+
             modelBuilder.Entity("General_Quarters.Models.JoinGame", b =>
                 {
                     b.Property<int>("JoinGameId")
