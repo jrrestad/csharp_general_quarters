@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/sparerecords/.dotnet/store/|arch|/|tfm|",
+      "/Users/sparerecords/.nuget/packages"
+    ]
+  }
+}
