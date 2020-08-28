@@ -20,7 +20,17 @@ document.getElementById("enemyMap").addEventListener("click", async (event)=>{
 
 // Sound functions to play if missed or hit
 function playExplosion() {
-    var sound = document.getElementById("explosion");
+    var explosionArray = [
+        "explosion", 
+        "explosion1",
+        "explosion2",
+        "explosion3",
+        "explosion4",
+        "explosion5",
+        "explosion6",
+    ]
+    var randomExplosion = explosionArray[Math.floor(Math.random()*explosionArray.length)];
+    var sound = document.getElementById(randomExplosion);
     sound.play();
 };
 function playSplash() {
