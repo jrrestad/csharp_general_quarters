@@ -27,6 +27,10 @@ function playSplash() {
     var sound = document.getElementById("splash");
     sound.play();
 };
+function playFinal() {
+    var sound = document.getElementById("Final");
+    sound.play();
+};
 
 connection.on("UpdateBoards", function (user, x, y, TileState){
     var thisuser = document.getElementById("userInput").value;
@@ -59,6 +63,7 @@ connection.on("UpdateBoards", function (user, x, y, TileState){
 connection.on("EndState", function(user){
     var thisuser = document.getElementById("userInput").value;
     ClearEnemyBoard();
+    playFinal();
     if(thisuser == user){
         Win();
     }

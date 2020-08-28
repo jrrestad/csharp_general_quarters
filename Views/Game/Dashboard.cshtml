@@ -16,7 +16,7 @@
     </div> *@
     <div class="col p-0">
         <partial name="_GameOutput" model="@Model.GameId">
-        <partial name="_PlacePieces"></partial>
+        <partial name="_PlacePieces">
     </div>
     <div id="MapsFrame" class=" p-0">
         <div class="enemyMap row m-auto" id="enemyMap"></div>
@@ -28,6 +28,7 @@
 </div>
 <audio id="explosion" src="~/content/audio/explosion.mp3"></audio>
 <audio id="splash" src="~/content/audio/splash.mp3" ></audio>
+<audio id="Final" src="~/content/audio/finale-explosion.mp3" ></audio>
 
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>

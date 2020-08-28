@@ -189,12 +189,5 @@ namespace General_Quarters.Hubs
                 // .FirstOrDefault(game =>game.GameId == );
             }
         }
-
-        // public Task SendReadyMessage(string groupName, string user)
-        // {
-        //     string message = $"{user} is ready!";
-        //     return Clients.Group(groupName).SendAsync("Send", message);
-
-        // }
     }
 }
