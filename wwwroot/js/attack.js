@@ -37,28 +37,40 @@ function playSplash() {
     var sound = document.getElementById("splash");
     sound.play();
 };
+function playFinal() {
+    var sound = document.getElementById("Final");
+    sound.play();
+};
 
 connection.on("UpdateBoards", function (user, x, y, TileState){
     var thisuser = document.getElementById("userInput").value;
     if(thisuser == user){
         //work on enemyMap
         if(TileState == 1){
-            $("#enemy"+y+x).addClass("Miss");
+            // $("#enemy"+y+x).addClass("Miss");
+            let imageString = "url(../../Content/Images/Splash-Sm.gif?" + new Date().getTime()+")";
+            $('#enemy'+y+x).css("backgroundImage",imageString);
             playSplash();
         }
         if(TileState == 2){
-            $("#enemy"+y+x).addClass("Hit");
+            // $("#enemy"+y+x).addClass("Hit");
+            let imageString = "url(../../Content/Images/ExplosionSM.gif?" + new Date().getTime()+")";
+            $('#enemy'+y+x).css("backgroundImage",imageString);
             playExplosion();
         }
     } 
     if(thisuser != user){
         //work on friendlyMap
         if(TileState == 1){
-            $("#friendly"+y+x).addClass("Miss");
+            // $("#friendly"+y+x).addClass("Miss");
+            let imageString = "url(../../Content/Images/Splash-Sm.gif?" + new Date().getTime()+")";
+            $('#friendly'+y+x).css("backgroundImage",imageString);
             playSplash();
         }
         if(TileState == 2){
-            $("#friendly"+y+x).addClass("Hit");
+            // $("#friendly"+y+x).addClass("Hit");
+            let imageString = "url(../../Content/Images/ExplosionSM.gif?" + new Date().getTime()+")";
+            $('#friendly'+y+x).css("backgroundImage",imageString);
             playExplosion();
         }
         $("#enemyMap").removeClass("dis");
@@ -69,6 +81,7 @@ connection.on("UpdateBoards", function (user, x, y, TileState){
 connection.on("EndState", function(user){
     var thisuser = document.getElementById("userInput").value;
     ClearEnemyBoard();
+    playFinal();
     if(thisuser == user){
         Win();
     }
