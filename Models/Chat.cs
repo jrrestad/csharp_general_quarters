@@ -169,10 +169,14 @@ namespace General_Quarters.Hubs
                 string message = $"{user} has attacked {YY} - {X}!!";
                 // Clients.Group(gameId).SendAsync("Send", message);
                 Clients.OthersInGroup(gameId).SendAsync("SendOutput", message);
+                Clients.OthersInGroup(gameId).SendAsync("SendOutput", "It's Your Turn");
             }
             Clients.Group(gameId).SendAsync("UpdateBoards", user, x, y, TileState);
             if(GameStatus)
             {
+                Clients.Group(gameId).SendAsync("EndState", user);
+                string endstate = $"!!!!!{user} HAS WON!!!!!";
+                Clients.OthersInGroup(gameId).SendAsync("SendOutput", endstate );
                 List<GamePlayer> FinishedGame = db.PlayingGame
                 .Where(g=>g.GameID == gameId)
                 .ToList();
@@ -181,6 +185,8 @@ namespace General_Quarters.Hubs
                     db.PlayingGame.Remove(g);
                     db.SaveChanges();
                 }
+                // Game thisGame = db.Games
+                // .FirstOrDefault(game =>game.GameId == );
             }
         }
 
