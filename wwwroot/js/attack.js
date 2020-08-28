@@ -12,17 +12,17 @@ if(chkMap){
         var groupName = document.getElementById("group-name").value;
         let aHit = $("#enemy"+X+Y).hasClass('Hit');
         let aMiss = $("#enemy"+X+Y).hasClass('Miss');
-        console.log(aHit);
-        console.log(aMiss);
-        if(aHit || aMiss){
-            // console.log("Inside")
-            var li = document.createElement("h6");
-            li.className = "text-danger";
-            var messageBox = document.querySelector('#outputBox')
-            li.textContent = "Try Again!!";
-            document.getElementById("outputList").appendChild(li);
-            messageBox.scrollTop = messageBox.scrollHeight - messageBox.clientHeight;
-        } else {
+        // console.log(aHit);
+        // console.log(aMiss);
+        // if(aHit || aMiss){
+        //     // console.log("Inside")
+        //     var li = document.createElement("h6");
+        //     li.className = "text-danger";
+        //     var messageBox = document.querySelector('#outputBox')
+        //     li.textContent = "Try Again!!";
+        //     document.getElementById("outputList").appendChild(li);
+        //     messageBox.scrollTop = messageBox.scrollHeight - messageBox.clientHeight;
+        // } else {
             try{
                 // console.log("fails here? attack line 10");
                 await connection.invoke("Round",userId, user, groupName, X, Y);
@@ -32,7 +32,7 @@ if(chkMap){
                 console.error(e.toString());
             }
             event.preventDefault();
-        }
+        // }
     });
     
     // Sound functions to play if missed or hit
