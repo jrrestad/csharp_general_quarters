@@ -26,7 +26,7 @@ namespace General_Quarters.Hubs
         {
             return Clients.Group(groupName).SendAsync("Send", $"[{groupName}] {user} says: {message}");
         }
-        
+
         public async Task AddToGroup(string groupName, string user)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
@@ -88,7 +88,7 @@ namespace General_Quarters.Hubs
                 newPlayer.jPlayer = jsonObj;
                 db.PlayingGame.Add(newPlayer);
                 db.SaveChanges();
-                string message = $"{user} is ready to play!";
+                string message = $"The game is ready to play!";
                 Clients.Group(groupName).SendAsync("SendOutput", message);
                 //add the start game function here and hide their 
                 //attack board.

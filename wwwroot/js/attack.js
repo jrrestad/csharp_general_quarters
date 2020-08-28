@@ -18,24 +18,38 @@ document.getElementById("enemyMap").addEventListener("click", async (event)=>{
 
 });
 
+// Sound functions to play if missed or hit
+function playExplosion() {
+    var sound = document.getElementById("explosion");
+    sound.play();
+};
+function playSplash() {
+    var sound = document.getElementById("splash");
+    sound.play();
+};
+
 connection.on("UpdateBoards", function (user, x, y, TileState){
     var thisuser = document.getElementById("userInput").value;
     if(thisuser == user){
         //work on enemyMap
         if(TileState == 1){
             $("#enemy"+y+x).addClass("Miss");
+            playSplash();
         }
         if(TileState == 2){
             $("#enemy"+y+x).addClass("Hit");
+            playExplosion();
         }
     } 
     if(thisuser != user){
         //work on friendlyMap
         if(TileState == 1){
             $("#friendly"+y+x).addClass("Miss");
+            playSplash();
         }
         if(TileState == 2){
             $("#friendly"+y+x).addClass("Hit");
+            playExplosion();
         }
         $("#enemyMap").removeClass("dis");
     }
