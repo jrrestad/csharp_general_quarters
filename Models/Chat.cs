@@ -24,17 +24,15 @@ namespace General_Quarters.Hubs
 
         public Task SendMessageToGroup(string groupName, string message, string user)
         {
-
-            // return Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId}: {message}");
             return Clients.Group(groupName).SendAsync("Send", $"[{groupName}] {user} says: {message}");
         }
-
+        
         public async Task AddToGroup(string groupName, string user)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
 
+            await Clients.Group(groupName).SendAsync("SendOutput", $"{user} has entered the battlespace...");
             await Clients.Group(groupName).SendAsync("Send", $"{user} has joined {groupName} chat.");
-            // await Clients.Group(groupName).SendAsync("Test");
         }
 
         public Task Test2(string groupName)
@@ -90,6 +88,8 @@ namespace General_Quarters.Hubs
                 newPlayer.jPlayer = jsonObj;
                 db.PlayingGame.Add(newPlayer);
                 db.SaveChanges();
+                string message = $"{user} is ready to play!";
+                Clients.Group(groupName).SendAsync("SendOutput", message);
                 //add the start game function here and hide their 
                 //attack board.
             }
@@ -168,7 +168,7 @@ namespace General_Quarters.Hubs
                 // GameState / TileState / user / gameId
                 string message = $"{user} has attacked {YY} - {X}!!";
                 // Clients.Group(gameId).SendAsync("Send", message);
-                Clients.OthersInGroup(gameId).SendAsync("Send",message);
+                Clients.OthersInGroup(gameId).SendAsync("SendOutput", message);
             }
             Clients.Group(gameId).SendAsync("UpdateBoards", user, x, y, TileState);
             if(GameStatus)
@@ -184,11 +184,11 @@ namespace General_Quarters.Hubs
             }
         }
 
-        public Task SendReadyMessage(string groupName, string user)
-        {
-            string message = $"{user} is ready!";
-            return Clients.Group(groupName).SendAsync("Send", message);
+        // public Task SendReadyMessage(string groupName, string user)
+        // {
+        //     string message = $"{user} is ready!";
+        //     return Clients.Group(groupName).SendAsync("Send", message);
 
-        }
+        // }
     }
 }

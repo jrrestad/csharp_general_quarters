@@ -1,0 +1,26 @@
+@model int
+
+@{
+    ViewData["Title"] = "General Quarters Home";
+    string username = Context.Session.GetString("UserName");
+}
+
+<div class="col-12 bg-light border rounded shadow p-0">
+    <h3 class="text-center my-2">Output</h3>
+    <div class="col-12">
+        <input type="hidden" value="Game @Model" name="group-name" id="group-name">
+        <input disabled type="hidden" value="Game @Model" name="group-name" id="auto-join">
+        <input disabled id="userInput" class="no-outline no-no-outline bg-white d-none" value="@username"/>
+        <div class="col-12"><hr /></div>
+        @* <input type="button" id="groupmsg" class="btn-primary form-control" value="Send to Group" /> *@
+        @* <div class="col-12"><hr /></div> *@
+        <div id="outputBox" class="col-12 form-control border overflow-auto mb-3 bg-black" style="height: 200px;">
+            <h6 id="outputList" class="text-success text-monospace"></h6>
+        </div>
+    </div>
+</div>
+
+@* <script>
+    var messageBody = document.querySelector('#messageBody');
+    messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+</script> *@
