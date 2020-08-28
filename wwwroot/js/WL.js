@@ -10,61 +10,63 @@
 //  0  0  w  0  0  0  0  w  0  0
 function Win(){
     //col1
-    $("#enemy11").addClass("Hit");
-    $("#enemy21").addClass("Hit");
-    $("#enemy31").addClass("Hit");
-    $("#enemy41").addClass("Hit");
+    let imageString = "url(../../Content/Images/ExplosionSM.gif?" + new Date().getTime()+")";
+    $("#enemy11").css("backgroundImage",imageString);
+    $("#enemy21").css("backgroundImage",imageString);
+    $("#enemy31").css("backgroundImage",imageString);
+    $("#enemy41").css("backgroundImage",imageString);
     //col2
-    $("#enemy52").addClass("Hit");
-    $("#enemy62").addClass("Hit");
-    $("#enemy72").addClass("Hit");
-    $("#enemy82").addClass("Hit");
+    $("#enemy52").css("backgroundImage",imageString);
+    $("#enemy62").css("backgroundImage",imageString);
+    $("#enemy72").css("backgroundImage",imageString);
+    $("#enemy82").css("backgroundImage",imageString);
     //col3
-    $("#enemy93").addClass("Hit");
-    $("#enemy103").addClass("Hit");
+    $("#enemy93").css("backgroundImage",imageString);
+    $("#enemy103").css("backgroundImage",imageString);
     //col4
-    $("#enemy94").addClass("Hit");
-    $("#enemy84").addClass("Hit");
+    $("#enemy94").css("backgroundImage",imageString);
+    $("#enemy84").css("backgroundImage",imageString);
     //col5
-    $("#enemy75").addClass("Hit");
-    $("#enemy65").addClass("Hit");
+    $("#enemy75").css("backgroundImage",imageString);
+    $("#enemy65").css("backgroundImage",imageString);
     //Col6
-    $("#enemy66").addClass("Hit");
-    $("#enemy76").addClass("Hit");
+    $("#enemy66").css("backgroundImage",imageString);
+    $("#enemy76").css("backgroundImage",imageString);
     //Col7
-    $("#enemy97").addClass("Hit");
-    $("#enemy87").addClass("Hit");
+    $("#enemy97").css("backgroundImage",imageString);
+    $("#enemy87").css("backgroundImage",imageString);
     //Col8
-    $("#enemy98").addClass("Hit");
-    $("#enemy108").addClass("Hit");
+    $("#enemy98").css("backgroundImage",imageString);
+    $("#enemy108").css("backgroundImage",imageString);
     //Col9
-    $("#enemy89").addClass("Hit");
-    $("#enemy79").addClass("Hit");
-    $("#enemy69").addClass("Hit");
-    $("#enemy59").addClass("Hit");
+    $("#enemy89").css("backgroundImage",imageString);
+    $("#enemy79").css("backgroundImage",imageString);
+    $("#enemy69").css("backgroundImage",imageString);
+    $("#enemy59").css("backgroundImage",imageString);
     //Col10
-    $("#enemy410").addClass("Hit");
-    $("#enemy310").addClass("Hit");
-    $("#enemy210").addClass("Hit");
-    $("#enemy110").addClass("Hit");
+    $("#enemy410").css("backgroundImage",imageString);
+    $("#enemy310").css("backgroundImage",imageString);
+    $("#enemy210").css("backgroundImage",imageString);
+    $("#enemy110").css("backgroundImage",imageString);
 }
 function Lose(){
     //Col3
-    $("#enemy13").addClass("Hit");
-    $("#enemy23").addClass("Hit");
-    $("#enemy33").addClass("Hit");
-    $("#enemy43").addClass("Hit");
-    $("#enemy53").addClass("Hit");
-    $("#enemy63").addClass("Hit");
-    $("#enemy73").addClass("Hit");
-    $("#enemy83").addClass("Hit");
-    $("#enemy93").addClass("Hit");
-    $("#enemy103").addClass("Hit");
+    let imageString = "url(../../Content/Images/ExplosionSM.gif?" + new Date().getTime()+")";
+    $("#enemy13").css("backgroundImage",imageString);
+    $("#enemy23").css("backgroundImage",imageString);
+    $("#enemy33").css("backgroundImage",imageString);
+    $("#enemy43").css("backgroundImage",imageString);
+    $("#enemy53").css("backgroundImage",imageString);
+    $("#enemy63").css("backgroundImage",imageString);
+    $("#enemy73").css("backgroundImage",imageString);
+    $("#enemy83").css("backgroundImage",imageString);
+    $("#enemy93").css("backgroundImage",imageString);
+    $("#enemy103").css("backgroundImage",imageString);
     //Row
-    $("#enemy104").addClass("Hit");
-    $("#enemy105").addClass("Hit");
-    $("#enemy106").addClass("Hit");
-    $("#enemy107").addClass("Hit");
+    $("#enemy104").css("backgroundImage",imageString);
+    $("#enemy105").css("backgroundImage",imageString);
+    $("#enemy106").css("backgroundImage",imageString);
+    $("#enemy107").css("backgroundImage",imageString);
 
 }
 

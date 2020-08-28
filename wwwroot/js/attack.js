@@ -96,10 +96,10 @@ if(chkMap){
     });
     
     connection.on("EndState", function(userId){
-        var thisuser = userid;
+        var thisuser = userid.toString();
         ClearEnemyBoard();
         playFinal();
-        if(thisuser == userId){
+        if(thisuser == userId.toString()){
             Win();
         }
         if(thisuser != userId){
@@ -107,7 +107,7 @@ if(chkMap){
         }
         window.setTimeout(
             function(){
-                window.location.replace("/main")
+                // window.location.replace("/main")
             },
             9000
         );
